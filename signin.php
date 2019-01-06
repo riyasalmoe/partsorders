@@ -1,9 +1,9 @@
 <?php
+    // session_start();
     include_once('general.php');
-    //session_start();
-    if($loginStatus === 0){
-        header('Location: signin.php');
-    }
+    echo $loginStatus;
+    echo $username;
+    echo $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,14 +29,12 @@
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-        <?php if ($loginStatus === 0) {
+            <?php if ($loginStatus === 0) {
                 # code...
-                echo "Please Login...";
+                echo $username;
             } else {
                 echo "Hello " . $username . "!";
-                //echo '<span><button type="submit" class="btn btn-secondary btn-sm btn-block"><span class="badge badge-secondary">Logout</span></button></span>';
-                echo '<small><a id="signout" href="signout.php">&nbsp;(SignOut)</a></small>';
-            } 
+            }
              ?>
         </li>
     </ul> 
@@ -45,8 +43,19 @@
 <hr>
 <hr>
 
-
-
+<form action="" class="sm">
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <button id="login" class="btn btn-outline-secondary float-right">Login</button>
+    </div>
+</form>
 
 
     <!-- Optional JavaScript -->

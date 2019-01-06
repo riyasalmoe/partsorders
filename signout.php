@@ -1,5 +1,9 @@
 <?php
+    //session_start();
     include_once('general.php');
+    $loginStatus = 0;
+    $username = "Please Sign-In";
+    session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,13 +25,13 @@
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <?php if ($loginStatus === 0) {
                 # code...
-                echo "Please Login...";
+                echo $username;
             } else {
                 echo "Hello " . $username . "!";
             }
@@ -39,20 +43,22 @@
 <hr>
 <hr>
 
-<form action="" class="sm">
-    <div class="form-group">
-        <label for="username">User Name</label>
-        <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
+<div class="row">
+    <div class="col-sm-4">
+        <!-- this place is blank -->
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+        <div class="col-sm-4">
+            <div class="alert alert-success text-center" role="alert">
+                You are succesfully signout from the system!
+            </div>
+            <div class="text-center">
+                <a href="signin.php" class="btn btn-secondary btn-block">Click here to Sign-In...</a>
+            </div>
+        </div>
+    <div class="col-sm-4">
+        <!-- this place is blank -->
     </div>
-    <div class="form-group">
-        <button id="login" class="btn btn-outline-secondary float-right">Login</button>
-    </div>
-</form>
-
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

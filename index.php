@@ -1,6 +1,6 @@
 <?php
-    include_once('general.php');
     //session_start();
+    include_once('general.php');
     if($loginStatus === 0){
         header('Location: signin.php');
     }
@@ -29,7 +29,7 @@
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-        <?php if ($loginStatus === 0) {
+            <?php if ($loginStatus === 0) {
                 # code...
                 echo "Please Login...";
             } else {
@@ -44,9 +44,6 @@
 
 <hr>
 <hr>
-
-
-
 
 
     <!-- Optional JavaScript -->

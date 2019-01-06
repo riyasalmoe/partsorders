@@ -1,6 +1,5 @@
-<?php
-$verStatus = "(Alpha)";
-$loginStatus = 0;
-$username = "Riyas Aboobaker";
-
+<?php session_start();
+    $verStatus = "(Alpha)";
+    $loginStatus = 1;
+    $username = "User";
 ?>
