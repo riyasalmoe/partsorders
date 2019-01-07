@@ -1,10 +1,10 @@
-<?php
+<?php //session_start();
 function dbConn() {
-        $servername = "192.168.0.85"; // DB Version : 10.1.31-MariaDB, DB Comment: mariadb.org binary distribution	32	Win32
-        //$servername = "localhost"; // DB Version: 10.1.21-MariaDB	DB Comment: mariadb.org binary distribution	32	Win32
+        //$servername = "192.168.0.85"; // DB Version : 10.1.31-MariaDB, DB Comment: mariadb.org binary distribution	32	Win32
+        $servername = "localhost"; // DB Version: 10.1.21-MariaDB	DB Comment: mariadb.org binary distribution	32	Win32
         $username = "root";
         $password = '$$almoe$$';
-        $dbname = "almoeservice";
+        $dbname = "partsorders";
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);

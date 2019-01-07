@@ -1,9 +1,33 @@
 <?php
-    // session_start();
+    session_start();
     include_once('general.php');
-    echo $loginStatus;
-    echo $username;
-    echo $_SESSION['id'];
+    include_once('dbconnect.php');
+    include_once('verifyUser.php');
+    
+    //initSessionVars();
+
+    $error=''; // Variable To Store Error Message
+
+    if(!isset($_SESSION['loginStatus'])){
+        initSessionVars();
+    }
+
+    if (isset($_POST['login'])) {
+        if (empty($_POST['username']) || empty($_POST['password'])) {
+            $_SESSION['loginStatus'] = 0;
+            $_SESSION['fullName'] = "Please Login...";
+            $error = "Username or Password is invalid";}
+        else {
+            if(AuthenticateUser($_POST['username'],$_POST['password'])){
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['fullName'] = getFullName($_POST['username']);
+                $_SESSION['loginStatus'] = 1;
+                header ('Location: index.php');
+            }else{
+                $error = "<small class=\"text-danger\">Invalid User Name or Password!</small>";
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +43,7 @@
     <!-- Other CSS -->
     <link rel="stylesheet" href="./helper.css">
 
-    <title>Default template</title>
+    <title>Sign In</title>
 
 </head>
 
@@ -29,12 +53,8 @@
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <?php if ($loginStatus === 0) {
-                # code...
-                echo $username;
-            } else {
-                echo "Hello " . $username . "!";
-            }
+            <?php 
+                returnLoginStatus();
              ?>
         </li>
     </ul> 
@@ -43,18 +63,22 @@
 <hr>
 <hr>
 
-<form action="" class="sm">
+<form action="" class="sm" method="post">
     <div class="form-group">
         <label for="username">User Name</label>
         <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+        <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
     </div>
     <div class="form-group">
-        <button id="login" class="btn btn-outline-secondary float-right">Login</button>
+        <span><?php echo $error; ?></span>
     </div>
+    <div class="form-group">
+        <button id="login" name="login" type="submit" class="btn btn-outline-secondary float-right">Login</button>
+    </div>
+    
 </form>
 
 

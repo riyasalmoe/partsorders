@@ -1,8 +1,18 @@
 <?php
-    //session_start();
+    session_start();
     include_once('general.php');
-    $loginStatus = 0;
-    $username = "Please Sign-In";
+    include_once('dbconnect.php');
+
+    clearSessionVars();
+
+    if(!isset($_SESSION['username'])){
+        $_SESSION['loginStatus'] = 0;
+        header('Location: signin.php');
+    } else {
+        unset($_SESSION['username']);
+        $_SESSION['loginStatus'] = 0;
+    }
+
     session_destroy();
 ?>
 <!DOCTYPE html>
@@ -19,7 +29,7 @@
     <!-- Other CSS -->
     <link rel="stylesheet" href="./helper.css">
 
-    <title>Default template</title>
+    <title>Sign Out</title>
 
 </head>
 
@@ -29,12 +39,8 @@
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <?php if ($loginStatus === 0) {
-                # code...
-                echo $username;
-            } else {
-                echo "Hello " . $username . "!";
-            }
+            <?php 
+                returnLoginStatus();
              ?>
         </li>
     </ul> 
@@ -49,7 +55,7 @@
     </div>
         <div class="col-sm-4">
             <div class="alert alert-success text-center" role="alert">
-                You are succesfully signout from the system!
+                You are succesfully signout from Part Order Management system!
             </div>
             <div class="text-center">
                 <a href="signin.php" class="btn btn-secondary btn-block">Click here to Sign-In...</a>

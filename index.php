@@ -1,7 +1,16 @@
 <?php
-    //session_start();
+    session_start();
     include_once('general.php');
-    if($loginStatus === 0){
+    include_once('dbconnect.php');
+
+    //initSessionVars();
+
+    if(!isset($_SESSION['username'])){
+        $_SESSION['loginStatus'] = 0;
+        header('Location: signin.php');
+    }
+
+    if($_SESSION['loginStatus'] === 0){
         header('Location: signin.php');
     }
 ?>
@@ -19,7 +28,7 @@
     <!-- Other CSS -->
     <link rel="stylesheet" href="./helper.css">
 
-    <title>Default template</title>
+    <title>Home Page</title>
 
 </head>
 
@@ -29,14 +38,8 @@
     <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <?php if ($loginStatus === 0) {
-                # code...
-                echo "Please Login...";
-            } else {
-                echo "Hello " . $username . "!";
-                //echo '<span><button type="submit" class="btn btn-secondary btn-sm btn-block"><span class="badge badge-secondary">Logout</span></button></span>';
-                echo '<small><a id="signout" href="signout.php">&nbsp;(SignOut)</a></small>';
-            } 
+            <?php 
+                returnLoginStatuswithSignOut();
              ?>
         </li>
     </ul> 
