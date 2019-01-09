@@ -1,36 +1,36 @@
 <?php
-    session_start();
-    include_once('general.php');
-    include_once('dbconnect.php');
-    include_once('verifyUser.php');
-    
-    //initSessionVars();
+session_start();
+include_once 'general.php';
+include_once 'dbconnect.php';
+include_once 'verifyUser.php';
 
-    $error=''; // Variable To Store Error Message
+//initSessionVars();
 
-    if(!isset($_SESSION['loginStatus'])){
-        initSessionVars();
-    }
+$error = ''; // Variable To Store Error Message
 
-    if (isset($_POST['login'])) {
-        if (empty($_POST['username']) || empty($_POST['password'])) {
-            $_SESSION['loginStatus'] = 0;
-            $_SESSION['fullName'] = "Please Login...";
-            $error = "Username or Password is invalid";}
-        else {
-            if(AuthenticateUser($_POST['username'],$_POST['password'])){
-                $_SESSION['username'] = $_POST['username'];
-                $_SESSION['fullName'] = getFullName($_POST['username']);
-                $_SESSION['loginStatus'] = 1;
-                header ('Location: index.php');
-            }else{
-                $error = "<small class=\"text-danger\">Invalid User Name or Password!</small>";
-            }
+if (!isset($_SESSION['loginStatus'])) {
+    initSessionVars();
+}
+
+if (isset($_POST['login'])) {
+    if (empty($_POST['username']) || empty($_POST['password'])) {
+        $_SESSION['loginStatus'] = 0;
+        $_SESSION['fullName'] = "Please Login...";
+        $error = "Username or Password is invalid";} else {
+        if (AuthenticateUser($_POST['username'], $_POST['password'])) {
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['fullName'] = getFullName($_POST['username']);
+            $_SESSION['loginStatus'] = 1;
+            header('Location: homeinitiator.php');
+        } else {
+            $error = "<small class=\"text-danger\">Invalid User Name or Password!</small>";
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -39,9 +39,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    
+
     <!-- Other CSS -->
-    <link rel="stylesheet" href="./helper.css">
+    <link rel="stylesheet" href="css/helper.css">
 
     <title>Sign In</title>
 
@@ -49,37 +49,39 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <?php 
-                returnLoginStatus();
-             ?>
-        </li>
-    </ul> 
-</nav>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management
+                <?php echo $verStatus ?></small></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <?php
+                    returnLoginStatus();
+                ?>
+            </li>
+        </ul>
+    </nav>
 
-<hr>
-<hr>
+    <hr>
+    <hr>
 
-<form action="" class="sm" method="post">
-    <div class="form-group">
-        <label for="username">User Name</label>
-        <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
-    </div>
-    <div class="form-group">
-        <span><?php echo $error; ?></span>
-    </div>
-    <div class="form-group">
-        <button id="login" name="login" type="submit" class="btn btn-outline-secondary float-right">Login</button>
-    </div>
-    
-</form>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+            <span>
+                <?php echo $error; ?></span>
+        </div>
+        <div class="form-group">
+            <button id="login" name="login" type="submit" class="btn btn-outline-secondary float-right">Login</button>
+        </div>
+
+    </form>
 
 
     <!-- Optional JavaScript -->
@@ -92,4 +94,5 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
 </body>
+
 </html>

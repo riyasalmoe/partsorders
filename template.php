@@ -8,6 +8,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -16,7 +17,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    
+
     <!-- Other CSS -->
     <link rel="stylesheet" href="./helper.css">
 
@@ -26,19 +27,20 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-        <?php
-            returnLoginStatuswithSignOut(); 
-        ?>
-        </li>
-    </ul> 
-</nav>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management
+                <?php echo $verStatus ?></small></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <?php
+                    returnLoginStatuswithSignOut(); 
+                ?>
+            </li>
+        </ul>
+    </nav>
 
-<hr>
-<hr>
+    <hr>
+    <hr>
 
 
 
@@ -54,4 +56,5 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
 </body>
+
 </html>

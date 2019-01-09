@@ -17,6 +17,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -25,7 +26,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    
+
     <!-- Other CSS -->
     <link rel="stylesheet" href="./helper.css">
 
@@ -35,24 +36,25 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management <?php echo $verStatus ?></small></a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <?php 
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a href="./Login.php" class="navbar-brand">ALMOE SERVICE CENTRE<small>Part Order Management
+                <?php echo $verStatus ?></small></a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <?php 
                 returnLoginStatus();
              ?>
-        </li>
-    </ul> 
-</nav>
+            </li>
+        </ul>
+    </nav>
 
-<hr>
-<hr>
+    <hr>
+    <hr>
 
-<div class="row">
-    <div class="col-sm-4">
-        <!-- this place is blank -->
-    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <!-- this place is blank -->
+        </div>
         <div class="col-sm-4">
             <div class="alert alert-success text-center" role="alert">
                 You are succesfully signout from Part Order Management system!
@@ -61,10 +63,10 @@
                 <a href="signin.php" class="btn btn-secondary btn-block">Click here to Sign-In...</a>
             </div>
         </div>
-    <div class="col-sm-4">
-        <!-- this place is blank -->
+        <div class="col-sm-4">
+            <!-- this place is blank -->
+        </div>
     </div>
-</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -76,4 +78,5 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 
 </body>
+
 </html>
