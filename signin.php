@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
     <form action="" method="post">
         <div class="form-group">
             <label for="username">User Name</label>
-            <input type="text" name="username" id="username" class="form-control" autocomplete="off" required>
+            <input type="text" name="username" id="username" class="form-control" autocomplete="off" required autofocus>
         </div>
         <div class="form-group">
             <label for="password">Password</label>

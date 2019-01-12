@@ -2,6 +2,7 @@
 session_start();
 include_once 'general.php';
 include_once 'dbconnect.php';
+include_once 'orderstatus.php';
 
 //initSessionVars();
 
@@ -13,6 +14,7 @@ if (!isset($_SESSION['username'])) {
 if ($_SESSION['loginStatus'] === 0) {
     header('Location: signin.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -62,45 +64,42 @@ if ($_SESSION['loginStatus'] === 0) {
                 <thead>
                     <tr>
                         <th style="width: 5%;">Job#</th>
-                        <th style="width: 10%;">Req. Date</th>
-                        <th style="width: 10%;">Part#</th>
-                        <th style="width: 20%;">Description</th>
-                        <th style="width: 10%;" class="text text-center">Req. Qty</th>
-                        <th style="width: 10%;" class="text text-center">Ord. Qty</th>
-                        <th style="width: 10%;" class="text text-center">Rec. Qty</th>
-                        <th class="text text-center">Request Status</th>
+                        <th style="width: 7%;">Req. Date</th>
+                        <th style="width: 7%;">Part#</th>
+                        <th style="width: 15%;">Description</th>
+                        <th style="width: 5%;">Vendor</th>
+                        <th style="width: 6%;" class="text text-center">Req. Qty</th>
+                        <th style="width: 6%;" class="text text-center">Ord. Qty</th>
+                        <th style="width: 6%;" class="text text-center">Rec. Qty</th>
+                        <th style="width: 20%;" class="text text-center">Status</th>
+                    </tr>
+                    <tr>
+<!--                     <form action="" method="post">
+                        <th style="width: 5%;">Filter</th>
+                        <th style="width: 7%;">Filter</th>
+                        <th style="width: 7%;">Filter</th>
+                        <th style="width: 15%;">Filter</th>
+                        <th style="width: 5%;">Filter</th>
+                        <th style="width: 6%;" class="text text-center"></th>
+                        <th style="width: 6%;" class="text text-center"></th>
+                        <th style="width: 6%;" class="text text-center"></th>
+                        <th style="width: 20%;" class="text text-center"></th>
+                        </form>  -->                       
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="nowrap">192111</td>
-                        <td class="nowrap">08-01-2019</td>
-                        <td>1693180</td>
-                        <td>MAINTENANCE UNIT,ASP,H</td>
-                        <td class="text text-center">2</td>
-                        <td class="text text-center">1</td>
-                        <td class="text text-center">1</td>
-                        <td>
-                            <ul class="list-unstyled multi-steps">
-                                <li>Request</li>
-                                <!-- <li class="is-active">Approval</li> -->
-                                <li>Ordered</li>
-                                <li>Arrived</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
+<!--                     <tr>
                         <td class="nowrap">192112</td>
                         <td class="nowrap">09-01-2019</td>
-                        <td>1693181</td>
+                        <td>16931811111</td>
                         <td>MAIN BOARD</td>
+                        <td>Samsung</td>
                         <td class="text text-center">2</td>
                         <td class="text text-center">2</td>
-                        <td class="text text-center">2</td>
+                        <td class="text text-center">0</td>
                         <td>
                             <ul class="list-unstyled multi-steps">
                                 <li>Requested?</li>
-                                <!-- <li>Approval</li> -->
                                 <li class="is-active">Ordered?</li>
                                 <li>Arrived?</li>
                             </ul>
@@ -109,20 +108,22 @@ if ($_SESSION['loginStatus'] === 0) {
                     <tr>
                         <td class="nowrap">192113</td>
                         <td class="nowrap">20-01-2019</td>
-                        <td>1693182</td>
+                        <td>16931821111</td>
                         <td>EXPANSION BOARD</td>
+                        <td>Brother</td>
                         <td class="text text-center">4</td>
                         <td class="text text-center">2</td>
-                        <td class="text text-center">1</td>
+                        <td class="text text-center">0</td>
                         <td>
                             <ul class="list-unstyled multi-steps">
                                 <li class="is-active">Requested?</li>
-                                <!-- <li>Approval</li> -->
                                 <li>Ordered?</li>
                                 <li>Arrived?</li>
                             </ul>
                         </td>
-                    </tr>
+                    </tr> -->
+                    
+                    <?php getMyRequests($_SESSION['username']);?>
                 </tbody>
             </table>
         </div>
