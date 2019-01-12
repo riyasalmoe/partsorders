@@ -64,22 +64,24 @@ if ($_SESSION['loginStatus'] === 0) {
                 <thead>
                     <tr>
                         <th style="width: 5%;">Job#</th>
+                        <th style="width: 5%;">Customer</th>
                         <th style="width: 7%;">Req. Date</th>
                         <th style="width: 7%;">Part#</th>
                         <th style="width: 15%;">Description</th>
                         <th style="width: 5%;">Vendor</th>
                         <th style="width: 6%;" class="text text-center">Req. Qty</th>
                         <th style="width: 6%;" class="text text-center">Ord. Qty</th>
-                        <th style="width: 6%;" class="text text-center">Rec. Qty</th>
+                        <th style="width: 6%;" class="text text-center">Rcvd. Qty</th>
                         <th style="width: 20%;" class="text text-center">Status</th>
                     </tr>
                     <tr>
 <!--                     <form action="" method="post">
-                        <th style="width: 5%;">Filter</th>
-                        <th style="width: 7%;">Filter</th>
-                        <th style="width: 7%;">Filter</th>
-                        <th style="width: 15%;">Filter</th>
-                        <th style="width: 5%;">Filter</th>
+                        <th style="width: 5%;">Job#</th>
+                        <th style="width: 5%;">Customer</th>
+                        <th style="width: 7%;">Req. Date</th>
+                        <th style="width: 7%;">Part#</th>
+                        <th style="width: 15%;">Description</th>
+                        <th style="width: 5%;">Vendor</th>
                         <th style="width: 6%;" class="text text-center"></th>
                         <th style="width: 6%;" class="text text-center"></th>
                         <th style="width: 6%;" class="text text-center"></th>
@@ -122,7 +124,7 @@ if ($_SESSION['loginStatus'] === 0) {
                             </ul>
                         </td>
                     </tr> -->
-                    
+
                     <?php getMyRequests($_SESSION['username']);?>
                 </tbody>
             </table>

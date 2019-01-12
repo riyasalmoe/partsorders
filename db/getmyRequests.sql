@@ -29,6 +29,7 @@ BEGIN
 SELECT
   OrderID,
   JobCardNo,
+  CustomerName,
   RequestedByID,
   FullName,
   HeaderComment,
@@ -41,7 +42,7 @@ SELECT
   ServiceType,
   Brand,
   Requested,
-  DATE_FORMAT(RequestDate,'%d-%b-%X'),
+  DATE_FORMAT(RequestDate, '%d-%b-%X') RequestDate,
   RequestTime,
   Acknowledged,
   AckDate,
@@ -64,7 +65,8 @@ SELECT
   ItemComment,
   ETA
 FROM partsorders.view_all_requests
-WHERE RequestedByID = _RequestedByID;
+WHERE RequestedByID = _RequestedByID
+  ORDER BY RequestDate DESC,RequestTime DESC;
 END
 $$
 
