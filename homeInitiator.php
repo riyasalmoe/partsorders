@@ -44,6 +44,9 @@ if ($_SESSION['loginStatus'] === 0) {
                 <?php echo $verStatus ?></small></a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                <a href="./newrequest.php" id="signout">New Order Request&nbsp;|&nbsp;</a>
+            </li>
+            <li class="nav-item">
                 <?php
                     returnLoginStatuswithSignOut();
                 ?>

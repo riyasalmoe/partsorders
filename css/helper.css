@@ -28,8 +28,17 @@ li.nav-item {
     }
   }
 
-  form {
+  form#signin {
     width: 350px;
+    margin: auto;
+    padding: 50px;
+    border-radius: .25em;
+    border-style: dotted;
+    border-color: grey;
+  }
+  
+  form.newrequest {
+    width: 500px;
     margin: auto;
     padding: 50px;
     border-radius: .25em;

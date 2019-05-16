@@ -12,6 +12,24 @@ if (!isset($_SESSION['loginStatus'])) {
     initSessionVars();
 }
 
+if(isset($_SESSION['loginStatus'])){
+    if($_SESSION['loginStatus'] == 1){
+
+        if($_SESSION['Administrators'] == 1){
+            header('Location: homeinitiator.php'); //must change to some other page later.
+        }elseif($_SESSION['Approvers'] == 1){
+            //header('Location: homeinitiator.php');
+        }elseif($_SESSION['Initiators'] == 1){
+            header('Location: homeinitiator.php');
+        }elseif($_SESSION['Executers'] == 1){
+            header('Location: homeprocessors.php');
+        }elseif($_SESSION['Viewers'] == 1){
+            //header('Location: homeprocessors.php');
+        }        
+    
+    }
+}
+
 if (isset($_POST['login'])) {
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $_SESSION['loginStatus'] = 0;
@@ -21,7 +39,21 @@ if (isset($_POST['login'])) {
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['fullName'] = getFullName($_POST['username']);
             $_SESSION['loginStatus'] = 1;
-            header('Location: homeinitiator.php');
+            
+            setAuthParams($_SESSION['username']);
+
+            if($_SESSION['Administrators'] == 1){
+                header('Location: homeinitiator.php'); //must change to some other page later.
+            }elseif($_SESSION['Approvers'] == 1){
+                //header('Location: homeinitiator.php');
+            }elseif($_SESSION['Initiators'] == 1){
+                header('Location: homeinitiator.php');
+            }elseif($_SESSION['Executers'] == 1){
+                header('Location: homeprocessors.php');
+            }elseif($_SESSION['Viewers'] == 1){
+                //header('Location: homeprocessors.php');
+            }
+            
         } else {
             $error = "<small class=\"text-danger\">Invalid User Name or Password!</small>";
         }
@@ -64,7 +96,7 @@ if (isset($_POST['login'])) {
     <hr>
     <hr>
 
-    <form action="" method="post">
+    <form action="" id="signin" method="post">
         <div class="form-group">
             <label for="username">User Name</label>
             <input type="text" name="username" id="username" class="form-control" autocomplete="off" required autofocus>

@@ -33,21 +33,28 @@ PROCEDURE createRequest(IN _JobCardNo VARCHAR(20),
   IN _PartName VARCHAR(255),
   IN _ReqQty BIGINT,
   IN _ServiceType VARCHAR(100),
-  IN _Vendor VARCHAR(100))
+  IN _Vendor VARCHAR(100) -- ,
+  -- OUT _result BIT
+  )
 --   SET autocommit = 0
+
  BEGIN
+  DECLARE _result BIT;
   DECLARE EXIT HANDLER FOR SQLEXCEPTION 
     BEGIN
         ROLLBACK;
         -- EXIT PROCEDURE;
-        SELECT 0 AS _result;
+        SET _result = 0;
     END;
-  
+
+    
+    
     START TRANSACTION;
       BEGIN
 
       INSERT INTO orderheader (JobCardNo, CustomerName, RequestedBy, RequestDate, RequestTime, Comments, LpoNumber)
-        VALUES (_JobCardNo, _CustomerName, _UserID, CURRENT_DATE(), CURRENT_TIME(), _Comments, _LpoNumber);
+        SELECT _JobCardNo, _CustomerName, _UserID, CURRENT_DATE(), CURRENT_TIME(), _Comments, _LpoNumber
+        WHERE NOT EXISTS (SELECT JobCardNo FROM orderheader WHERE JobCardNo = _JobCardNo) LIMIT 1;
       
       SELECT 
           OrderID INTO @OrderHeaderID
@@ -69,9 +76,10 @@ PROCEDURE createRequest(IN _JobCardNo VARCHAR(20),
             END;
     COMMIT;
   
-    SELECT 1 AS _result;
+    SET _result = 1;
 --     SET autocommit = 1;
 
+    SELECT _result;
 END
 $$
 

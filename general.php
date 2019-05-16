@@ -1,4 +1,12 @@
 <?php //session_start();
+include_once 'dbconnect.php';
+    //Set the table with the below data for a new database setup
+    //ID    Description
+    // 1    Administrators
+    // 2    Approvers
+    // 3    Initiators
+    // 4    Executers
+    // 5    Viewers
 
 $verStatus = "(Alpha)";
 
@@ -31,6 +39,50 @@ function initSessionVars()
     }
     if (!isset($_SESSION['Viewers'])) {
         $_SESSION['Viewers'] = 0;
+    }
+}
+
+function setAuthParams($thisUser) {
+    //ID    Description
+    // 1    Administrators
+    // 2    Approvers
+    // 3    Initiators
+    // 4    Executers
+    // 5    Viewers
+
+    $con = dbconn();
+
+    $query = "CALL getUserRights('" . $thisUser . "')";
+
+
+    if ($stmt = $con->prepare($query)) {
+        $stmt->execute();
+        $stmt->bind_result($RoleID, $RoleName);
+        while ($stmt->fetch()) {
+            
+            switch ($RoleID) {
+                case 1:
+                $_SESSION['Administrators'] = 1;
+                    break;
+                case 2:
+                    $_SESSION['Approvers'] = 1;                
+                    break;
+                case 3:
+                    $_SESSION['Initiators'] = 1;
+                    break;
+                case 4:
+                    $_SESSION['Executers'] = 1;
+                    break;
+                case 5:
+                    $_SESSION['Viewers'] = 1;
+                    break;            
+                // default:
+                //     # code...
+                //     break;
+            }
+            
+        }
+        $stmt->close();
     }
 }
 
